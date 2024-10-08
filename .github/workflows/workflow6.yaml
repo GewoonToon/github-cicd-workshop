@@ -11,5 +11,5 @@ jobs:
     name: Replace badge to failed
     steps:
       - name: Change url
-        run: sed "s/<badge>/tests-failed-red"
+        run: sed -i "s/<badge>/tests-failed-red/" README.md
         shell: bash
