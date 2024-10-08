@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents:
+    write
 
 jobs:
   replace_badge_failed:
@@ -14,6 +17,30 @@ jobs:
       - name: Change url
         run: |
           sed -i "s/<badge>/tests-failed-red/" README.md
+          git config user.email "Toon.Dubois@gmail.com"
+          git config user.name "GewoonToon"
+          git commit -am "Automated report"
+          git push
+        shell: bash
+  
+  test_exercise:
+    runs-on: ubuntu-latest
+    name: Test exercise
+    needs: replace_badge_failed
+    steps:
+    - name: Install pytest
+      run: pip install pytest
+    - name: Test bad code
+      run: pytest exercise_2
+  
+  replace_badge_success:
+    runs-on: ubuntu-latest
+    name: Replace badge to success
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change url
+        run: |
+          sed -i "s/<badge>/tests-success-green/" README.md
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git commit -am "Automated report"
