@@ -28,29 +28,15 @@ jobs:
   dev_deployment:
     runs-on: ubuntu-latest
     needs: build-and-push
-    environment: dev
-    concurrency: deployment
+    environment: ${{ matrix.env }}
+    strategy:
+      matrix:
+        env: [dev, int, prod]
+      max-parallel: 1
     steps:
     - name: Print Hello World
       run: echo "Hello, World!"
   
-  int_deployment:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    environment: int
-    concurrency: deployment
-    steps:
-    - name: Print Hello World
-      run: echo "Hello, World!"
-    
-  prod_deployment:
-    runs-on: ubuntu-latest
-    needs: build-and-push
-    environment: prod
-    concurrency: deployment
-    steps:
-    - name: Print Hello World
-      run: echo "Hello, World!"
 
   # Chain the next job to the previous one and make it deploy
   # to different environments with manual approvals
