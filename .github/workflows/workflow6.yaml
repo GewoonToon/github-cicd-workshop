@@ -1,0 +1,14 @@
+name: Badges
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  replace_badge_failed:
+    runs-on: ubuntu-latest
+    name: Replace badge to failed
+    steps:
+      - name: Change url
+        run: sed "s/<badge>/tests-failed-red"
