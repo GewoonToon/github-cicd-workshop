@@ -22,6 +22,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/clockbox:latest
       
       # Add more steps here
 
