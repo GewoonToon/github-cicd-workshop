@@ -25,7 +25,7 @@ runs:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
     
     - name: If statement
-      if: ${{ $INPUT_WHO_TO_GREET == $GITHUB_OUTPUT }}
+      if: ${{ inputs.who-to-greet == $GITHUB_OUTPUT }}
       run: echo "Test"
       shell: bash
       env:
