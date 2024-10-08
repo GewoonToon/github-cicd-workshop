@@ -12,3 +12,4 @@ jobs:
     steps:
       - name: Change url
         run: sed "s/<badge>/tests-failed-red"
+        shell: bash
