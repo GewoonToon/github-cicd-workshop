@@ -22,3 +22,9 @@ runs:
       run: echo ${{ inputs.who-to-greet }} >> $GITHUB_OUTPUT
       id: setoutput
       shell: bash
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
