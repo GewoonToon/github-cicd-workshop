@@ -14,7 +14,7 @@ jobs:
       - name: Change url
         run: |
           sed -i "s/<badge>/tests-failed-red/" README.md
-          git config config user.email "toon.dubois@gmail.com"
+          git config user.email "toon.dubois@gmail.com"
           git config user.name "GewoonToon"
           git commit -am "Automated report"
           git push
