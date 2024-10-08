@@ -1,16 +1,18 @@
-name: Docker CD Pipeline
+name: Protected envs and stages
 
 on:
   push:
     branches:
       - main
 
+
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout github repository
         uses: actions/checkout@v4
+
       - name: Login to Docker
         uses: docker/login-action@v3
         with:
@@ -22,7 +24,33 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/clockbox:latest
           context: exercise_3
-      
-      # Add more steps here
 
-  # More jobs can be added
+  dev_deployment:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    environment: dev
+    concurrency: deployment
+    steps:
+    - name: Print Hello World
+      run: echo "Hello, World!"
+  
+  int_deployment:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    environment: int
+    concurrency: deployment
+    steps:
+    - name: Print Hello World
+      run: echo "Hello, World!"
+    
+  prod_deployment:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    environment: prod
+    concurrency: deployment
+    steps:
+    - name: Print Hello World
+      run: echo "Hello, World!"
+
+  # Chain the next job to the previous one and make it deploy
+  # to different environments with manual approvals
