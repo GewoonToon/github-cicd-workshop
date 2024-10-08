@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: foo
-        uses: ./.github/actions/greet_someone@5fb4a31
+        uses: ./.github/actions/greet_someone
         with:
           who-to-greet: 'Test person'
