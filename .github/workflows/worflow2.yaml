@@ -16,7 +16,7 @@ jobs:
       - id: foo
         uses: ./.github/actions/greet_someone
         with:
-          who-to-greet: 'Test person'
+          who-to-greet: 'Person'
       - name: Conitional step
-        if: ${{ steps.setoutput.outputs.input == 'Test person'}}
+        if: ${{ steps.setoutput.outputs.input == 'Person'}}
         run: echo "Test"
