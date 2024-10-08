@@ -19,7 +19,7 @@ runs:
         INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
 
     - name: Set output
-      run: echo "${{ inputs.who-to-greet }}"" >> $GITHUB_OUTPUT
+      run: echo "${{ inputs.who-to-greet }}" >> $GITHUB_OUTPUT
       id: setoutput
       shell: bash
 
