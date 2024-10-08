@@ -36,7 +36,7 @@ jobs:
       fail-fast: true
     steps:
     - name: Print Hello World
-      run: echo "Hello, World!"
+      run: exit 1
   
 
   # Chain the next job to the previous one and make it deploy
