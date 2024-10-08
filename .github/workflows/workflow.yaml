@@ -1,0 +1,25 @@
+name: Docker CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Login to Docker
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+        shell: bash
+      - name: Build docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/github-cicd-workshop .
+        shell: bash
+      - name: Push docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/github-cicd-workshop
+      
+      # Add more steps here
+
+  # More jobs can be added
