@@ -33,6 +33,7 @@ jobs:
       matrix:
         env: [dev, int, prod]
       max-parallel: 1
+      fail-fast: true
     steps:
     - name: Print Hello World
       run: echo "Hello, World!"
