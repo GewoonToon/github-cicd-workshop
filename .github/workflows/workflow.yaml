@@ -23,6 +23,7 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/clockbox:latest
+          context: exercise_3
       
       # Add more steps here
 
