@@ -8,7 +8,7 @@ inputs:
 outputs:
   input:
     description: 'The input'
-    value: ${{ inputs.who-to-greet }}
+    value: ${{ steps.setoutput.outputs.input }}
 runs:
   using: "composite"
   steps:
@@ -17,6 +17,11 @@ runs:
       shell: bash
       env:
         INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+    - name: Set output
+      run: echo ${{ inputs.who-to-greet }} > $GITHUB_OUTPUT
+      id: setoutput
+      shell: bash
 
     - name: Set GitHub Path
       run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
@@ -28,5 +33,3 @@ runs:
       if: ${{ inputs.who-to-greet == $GITHUB_OUTPUT }}
       run: echo "Test"
       shell: bash
-      env:
-        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
