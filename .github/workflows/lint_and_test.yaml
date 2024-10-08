@@ -28,6 +28,7 @@ jobs:
       run: pip install pytest flake8
     - name: Flake
       run: flake8 .
+      working-directory: exercise_2
     - name: Test bad code
       run: pytest exercise_2
     # Complete the lint job configuration
